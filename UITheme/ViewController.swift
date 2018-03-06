@@ -12,10 +12,35 @@ class ViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var page: UIPageControl!
+    
+    let manager = UITheme.manager
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        /*  AUTO MANAGED by UITheme
+         *
+         *  Slide, Progress Bar, Button
+         */
+        // View Theme
+        let mvProfile = UIThemeProfile.view(defaultBackground: .white, themeBackground: .black)
+        mvProfile.themeTint = UIColor(red: 54/255, green: 124/255, blue: 22/255, alpha: 1)
+        mvProfile.defaultTint = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        mvProfile.statusBar = true
+        let mvElement = UIThemeElement(element: view, profile: mvProfile)
+        // Label Theme
+        let lProfile = UIThemeProfile.label(defaultTextColor: .black, themeTextColor: .white)
+        lProfile.themeTextColor = UIColor(red: 255/255, green: 208/255, blue: 255/255, alpha: 1)
+        lProfile.defaultText = "Light Theme"
+        lProfile.themeText = "Dark Theme"
+        let lElement = UIThemeElement(element: label, profile: lProfile)
+        // Page Control Theme
+        let tcPages = UIColor(red: 237/255, green: 126/255, blue: 77/255, alpha: 1)
+        let tPages = UIColor(red: 54/255, green: 124/255, blue: 22/255, alpha: 1)
+        let pcProfile = UIThemeProfile.pagecontrol(defaultPagesColor: .black, themePagesColor: tPages, defaultCurrentPageColor: .lightGray, themeCurrentPageColor: tcPages)
+        let pcElement = UIThemeElement(element: page, profile: pcProfile)
+        // Object Pool
+        manager.addToPool([mvElement, lElement, pcElement])
         
         
     }
@@ -28,43 +53,17 @@ class ViewController: UIViewController {
     var isenabled = false
     @IBAction func changeTheme() {
         
-/*  AUTO MANAGED by UITheme
- *
- *  Slide, Progress Bar, Button (unsupported)
- */
-        
-// View Theme
-        let mvProfile = UIThemeProfile.view(defaultBackground: .white, themeBackground: .black)
-        mvProfile.themeTint = UIColor(red: 54/255, green: 124/255, blue: 22/255, alpha: 1)
-        mvProfile.defaultTint = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-        mvProfile.statusBar = true
-// Label Theme
-        let lProfile = UIThemeProfile.label(defaultTextColor: .black, themeTextColor: .white)
-        lProfile.themeTextColor = UIColor(red: 255/255, green: 208/255, blue: 255/255, alpha: 1)
-        lProfile.defaultText = "Light Theme"
-        lProfile.themeText = "Dark Theme"
-// Page Control Theme
-        let tcPages = UIColor(red: 237/255, green: 126/255, blue: 77/255, alpha: 1)
-        let tPages = UIColor(red: 54/255, green: 124/255, blue: 22/255, alpha: 1)
-        let pcProfile = UIThemeProfile.pagecontrol(defaultPagesColor: .black, themePagesColor: tPages, defaultCurrentPageColor: .lightGray, themeCurrentPageColor: tcPages)
-        
-        if !isenabled {
+        if !manager.isThemeOn {
             do {
-                try view.enableTheme(profile: mvProfile)
-                try label.enableTheme(profile: lProfile)
-                try page.enableTheme(profile: pcProfile)
-                isenabled = true
-            } catch {
-                print("Error enabling theme")
+                try manager.enableTheme()
+            } catch let error {
+                print(error.localizedDescription)
             }
         } else {
             do {
-                try view.disableTheme(profile: mvProfile)
-                try label.disableTheme(profile: lProfile)
-                try page.disableTheme(profile: pcProfile)
-                isenabled = false
-            } catch {
-                print("Error disabling theme")
+                try manager.disableTheme()
+            } catch let error {
+                print(error.localizedDescription)
             }
         }
     }

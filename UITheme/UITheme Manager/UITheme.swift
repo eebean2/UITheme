@@ -8,6 +8,22 @@
 
 import UIKit
 
+public enum UIThemeError: Error {
+    case wrongProfileType
+    case unsupportedType
+}
+
+extension UIThemeError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .wrongProfileType:
+            return NSLocalizedString("Profile does not match Theme Object, please check profile type!", comment: "")
+        case .unsupportedType:
+            return NSLocalizedString("This object is not supported.", comment: "")
+        }
+    }
+}
+
 class UITheme {
     
     /// UITheme Manager
@@ -20,85 +36,82 @@ class UITheme {
     //MARK: -Theme Options and Checks
     public weak var delegate: UIThemeDelegate?
     /// Check if dark mode is enabled
-    public private(set) var isDarkMode = false
-    /// Auto-update the status bar
-    public var statusBarAutoUpdate = true
+    public private(set) var isThemeOn = false
+    /// Time at which everything animates
+    public var animationTime: TimeInterval = 0.5
     
     //MARK: -Methods
     
-    public func poolContains(element: UIThemeElement) -> Bool {
-//        if elementPool.contains(element) {
-//            return true
-//        } else {
-//            return false
-//        }
-        return false
+    public func poolContains(_ element: UIThemeElement) -> Bool {
+        if elementPool.contains(element) {
+            return true
+        } else {
+            return false
+        }
     }
     
-    func addToPool(element: UIThemeElement) {
-        
+    func addToPool(_ element: UIThemeElement) {
+        elementPool.append(element)
     }
     
-    func remove(element: UIThemeElement) {
-        
+    func addToPool(_ elements: [UIThemeElement]) {
+        elementPool.append(contentsOf: elements)
     }
     
-    public func enableTheme() throws {
-//        for element in elementPool {
-//            switch element {
-//            case is UIView:
-//                break
-//            default:
-//                break
-//            }
-//        }
-        
-        
-        
-        
-        
-        
-//  This is an additional switch attempt
-//
-//
-//        for e in elementPool {
-//            switch e.elementType {
-//                case
-//            }
-//
-//
-//            if e.elementType == .uninit {
-//                throw NSError(domain: "UIThemeError", code: 000, userInfo: [NSLocalizedDescriptionKey: "UIThemeElement has not been configured correctly, please call UIThemeElement.[elementtype] to configure this element."])
-//            } else {
-//                switch e.elementType {
-//                    case
-//                }
-//            }
-//        }
+    func remove(_ element: UIThemeElement) {
+        elementPool.remove(at: elementPool.index(of: element)!)
+    }
+    
+    public func enableTheme(animated: Bool = true) throws {
+        self.delegate?.themeWillChange!()
+        var t: TimeInterval = 0
+        if animated {
+            t = animationTime
+        }
+        UIView.animate(withDuration: t, animations: {
+            UIView.animate(withDuration: t) {
+                for element in self.elementPool {
+                    try? element.enableTheme(animated: false)
+                }
+            }
+        }) { (_) in
+            self.isThemeOn = true
+            self.delegate?.themeDidChange!()
+        }
+    }
+    
+    public func disableTheme(animated: Bool = true) throws {
+        self.delegate?.themeWillChange!()
+        var t: TimeInterval = 0
+        if animated {
+            t = animationTime
+        }
+        UIView.animate(withDuration: t, animations: {
+            for element in self.elementPool {
+                try? element.disableTheme(animated: false)
+            }
+        }) { (_) in
+            self.isThemeOn = false
+            self.delegate?.themeDidChange!()
+        }
     }
 }
 
 @objc public protocol UIThemeDelegate: class {
     @objc optional func themeWillChange()
-    @objc optional func themeDidNotChange(error: Error)
+    
+// TODO: Subsitute above throws for didNotChange.
+//       Must include a backup call to disable/
+//       enable theme to revert changes.
+    
+//    @objc optional func themeDidNotChange(error: Error)
     @objc optional func themeDidChange()
 }
 
-public enum UIThemePreset {
-    case hombrew
-    case dark
-    case light
-}
-
-public class UIThemeElement: NSObject {
-    public typealias ThemeElement<T: UIThemeElementProtocol> = T
-
-    public init(element: ThemeElement<UIView>, profile: UIThemeProfile) {
-        self.element = element
-        self.profile = profile
-    }
-
-    public var element: ThemeElement<UIView>
-    public var profile: UIThemeProfile
-}
+// TODO: Add preset themes
+//public enum UIThemePreset {
+//    case hombrew
+//    case dark
+//    case light
+//}
 

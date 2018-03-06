@@ -8,13 +8,6 @@
 
 import UIKit
 
-public enum UIThemeError: Error {
-    case wrongProfileType
-    case missingValue
-    case invalidValue
-    case unknownError
-}
-
 public protocol UIThemeElementProtocol: Hashable { }
 
 // MARK: -View
@@ -70,8 +63,8 @@ extension UIView: UIThemeElementProtocol {
 
 // MARK: -TableView
 extension UITableView {
-    public func enableTheme(profile: UIThemeProfile.label, animated: Bool = true) throws {
-        if profile.elementType != .label {
+    public func enableTheme(profile: UIThemeProfile.tableview, animated: Bool = true) throws {
+        if profile.elementType != .tableview {
             throw UIThemeError.wrongProfileType
         } else {
             var t: TimeInterval = 0
@@ -87,8 +80,8 @@ extension UITableView {
         }
     }
     
-    public func disableTheme(profile: UIThemeProfile.label, animated: Bool = true) throws {
-        if profile.elementType != .label {
+    public func disableTheme(profile: UIThemeProfile.tableview, animated: Bool = true) throws {
+        if profile.elementType != .tableview {
             throw UIThemeError.wrongProfileType
         } else {
             var t: TimeInterval = 0

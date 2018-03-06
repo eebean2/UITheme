@@ -16,6 +16,7 @@
 		7393070E202BC5C500233710 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393070D202BC5C500233710 /* UIView.swift */; };
 		73930710202BC90500233710 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393070F202BC90500233710 /* UITheme.swift */; };
 		739E1E30202CC3BB007C6D79 /* UIThemeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739E1E2F202CC3BB007C6D79 /* UIThemeProfile.swift */; };
+		73AF3506204E190500B3D71E /* UIThemeElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AF3505204E190500B3D71E /* UIThemeElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		7393070D202BC5C500233710 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		7393070F202BC90500233710 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
 		739E1E2F202CC3BB007C6D79 /* UIThemeProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIThemeProfile.swift; sourceTree = "<group>"; };
+		73AF3505204E190500B3D71E /* UIThemeElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIThemeElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				7393070F202BC90500233710 /* UITheme.swift */,
 				739E1E2F202CC3BB007C6D79 /* UIThemeProfile.swift */,
+				73AF3505204E190500B3D71E /* UIThemeElement.swift */,
 			);
 			path = "UITheme Manager";
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			files = (
 				739306FC202BC57900233710 /* ViewController.swift in Sources */,
 				73930710202BC90500233710 /* UITheme.swift in Sources */,
+				73AF3506204E190500B3D71E /* UIThemeElement.swift in Sources */,
 				739E1E30202CC3BB007C6D79 /* UIThemeProfile.swift in Sources */,
 				7393070E202BC5C500233710 /* UIView.swift in Sources */,
 				739306FA202BC57900233710 /* AppDelegate.swift in Sources */,
