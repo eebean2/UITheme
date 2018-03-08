@@ -14,12 +14,22 @@ public final class UIThemeElement: NSObject {
     public var element: ThemeElement
     public var profile: UIThemeProfile
     
+    /// Create a new themed element
+    ///
+    /// - paramaters:
+    ///     - element: The UI element to be themed
+    ///     - profile: The UIThemeProfile for the UI element to be custimized
     public init(element: ThemeElement, profile: UIThemeProfile) {
         self.element = element
         self.profile = profile
         super.init()
     }
     
+    /// Enable the objects theme
+    ///
+    /// - throws: An error of type UIThemeError
+    ///
+    /// - paramaters animated: Default = true, animates the transition between themes
     public func enableTheme(animated: Bool = true) throws {
         switch element.self {
         case is UIView:
@@ -209,6 +219,11 @@ public final class UIThemeElement: NSObject {
         }
     }
     
+    /// Disable the objects theme
+    ///
+    /// - throws: An error of type UIThemeError
+    ///
+    /// - paramaters animated: Default = true, animates the transition between themes
     public func disableTheme(animated: Bool = true) throws {
         switch element.self {
         case is UIView:

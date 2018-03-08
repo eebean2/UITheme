@@ -24,13 +24,13 @@ extension UIThemeError: LocalizedError {
     }
 }
 
-class UITheme {
+public class UITheme {
     
     /// UITheme Manager
     public static let manager = UITheme()
     private init() {}
     
-    /// UIThemeObject Pool
+    /// UITheme Object Pool
     private var elementPool = [UIThemeElement]()
     
     //MARK: -Theme Options and Checks
@@ -42,6 +42,7 @@ class UITheme {
     
     //MARK: -Methods
     
+    /// Check if the element pool contains an object
     public func poolContains(_ element: UIThemeElement) -> Bool {
         if elementPool.contains(element) {
             return true
@@ -50,18 +51,29 @@ class UITheme {
         }
     }
     
+    /// Add an object to the element pool
     func addToPool(_ element: UIThemeElement) {
         elementPool.append(element)
     }
     
+    /// Add multiple objects to element pool
     func addToPool(_ elements: [UIThemeElement]) {
         elementPool.append(contentsOf: elements)
     }
     
-    func remove(_ element: UIThemeElement) {
+    /// Remove an object from the element pool
+    func removeFromPool(_ element: UIThemeElement) {
         elementPool.remove(at: elementPool.index(of: element)!)
     }
     
+    /// Empty the element pool
+    func removeAllFromPool() {
+        elementPool.removeAll()
+    }
+    
+    /// Enable the theme for all objects in the element pool
+    ///
+    /// - note: This is automaticly animated. The object pool is animated as one instance, and not individualy.
     public func enableTheme(animated: Bool = true) throws {
         self.delegate?.themeWillChange!()
         var t: TimeInterval = 0
@@ -80,6 +92,9 @@ class UITheme {
         }
     }
     
+    /// Disable the theme for all objects in the element pool
+    ///
+    /// - note: This is automaticly animated. The object pool is animated as one instance, and not individualy.
     public func disableTheme(animated: Bool = true) throws {
         self.delegate?.themeWillChange!()
         var t: TimeInterval = 0

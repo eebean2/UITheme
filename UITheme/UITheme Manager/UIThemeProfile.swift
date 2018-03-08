@@ -71,8 +71,12 @@ public enum UIThemeProfileType {
 // MARK: -UIThemeProfile
 @objc public class UIThemeProfile: NSObject {
     
+    /// The element which is being themed
     public var elementType: UIThemeProfileType = .uninit
+    /// Animate the status bar
+    /// - note: Default = false
     public var statusBar: Bool = false
+    /// Time to animate
     public var animateTime: TimeInterval = 0.5
     
     // MARK: -View
