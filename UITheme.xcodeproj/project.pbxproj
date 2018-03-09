@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		733E16132032380200089235 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 733E16122032380100089235 /* test.png */; };
 		739306FA202BC57900233710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739306F9202BC57900233710 /* AppDelegate.swift */; };
 		739306FC202BC57900233710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739306FB202BC57900233710 /* ViewController.swift */; };
 		739306FF202BC57900233710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 739306FD202BC57900233710 /* Main.storyboard */; };
@@ -20,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		733E16122032380100089235 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		73776017205242840035A277 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		737C5EA9204DF1050012595D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		739306F6202BC57900233710 /* UITheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		739306F9202BC57900233710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +45,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73776016205242440035A277 /* Other Items */ = {
+			isa = PBXGroup;
+			children = (
+				739306F9202BC57900233710 /* AppDelegate.swift */,
+				739306FB202BC57900233710 /* ViewController.swift */,
+				739306FD202BC57900233710 /* Main.storyboard */,
+				73930700202BC57B00233710 /* Assets.xcassets */,
+				73930702202BC57B00233710 /* LaunchScreen.storyboard */,
+				73930705202BC57B00233710 /* Info.plist */,
+			);
+			path = "Other Items";
+			sourceTree = "<group>";
+		};
 		739306ED202BC57900233710 = {
 			isa = PBXGroup;
 			children = (
@@ -65,16 +77,11 @@
 		739306F8202BC57900233710 /* UITheme */ = {
 			isa = PBXGroup;
 			children = (
+				737C5EA9204DF1050012595D /* README.md */,
+				73776017205242840035A277 /* CHANGELOG.md */,
 				7393070C202BC5A400233710 /* UITheme Manager */,
 				7393070B202BC58700233710 /* UITheme Extensions */,
-				739306F9202BC57900233710 /* AppDelegate.swift */,
-				739306FB202BC57900233710 /* ViewController.swift */,
-				739306FD202BC57900233710 /* Main.storyboard */,
-				73930700202BC57B00233710 /* Assets.xcassets */,
-				73930702202BC57B00233710 /* LaunchScreen.storyboard */,
-				733E16122032380100089235 /* test.png */,
-				73930705202BC57B00233710 /* Info.plist */,
-				737C5EA9204DF1050012595D /* README.md */,
+				73776016205242440035A277 /* Other Items */,
 			);
 			path = UITheme;
 			sourceTree = "<group>";
@@ -157,7 +164,6 @@
 			files = (
 				73930704202BC57B00233710 /* LaunchScreen.storyboard in Resources */,
 				73930701202BC57B00233710 /* Assets.xcassets in Resources */,
-				733E16132032380200089235 /* test.png in Resources */,
 				739306FF202BC57900233710 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +326,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LBL5W959W4;
-				INFOPLIST_FILE = UITheme/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UITheme/Other Items/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,7 +344,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LBL5W959W4;
-				INFOPLIST_FILE = UITheme/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UITheme/Other Items/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

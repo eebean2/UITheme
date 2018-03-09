@@ -126,7 +126,6 @@ extension UILabel {
                     self.text = profile.themeText
                 }
                 if profile.themeTextColor != nil {
-                    print("Text Color: \(profile.themeTextColor.debugDescription)")
                     self.textColor = profile.themeTextColor
                 }
                 self.shadowColor = profile.themeShadow
